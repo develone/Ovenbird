@@ -8,11 +8,10 @@ ICE40-HX8K-CT256				echotest										PMODUSB
 PM2-A2 IOT-223 B3 output wire	o_uart_tx B3 with respect to module --> to uart rx	2 
 PM2-A3 IOT-214 B5 input  i_uart_rx B5 with respect to module	<-- from the uart tx 3 
 																				PMODUSB
-
-thruwire
-PM2-A2 IOT-223 B3 input	wire	i_sw B3 with respect to module --> input to fpga
-PM2-A3 IOT-214 B5 output wire	o_led B5 with respect to module <-- output from fpga
-
+clock RX TX
+i_clk,i_uart_rx, o_uart_tx
+@block
+def SimpleWrapper(clock, RX, TX)
 yosys -l simple.log -p 'synth_ice40 -abc9 -blif echotest.blif -json echotest.json' echotest.v
 == echotest ===
 
